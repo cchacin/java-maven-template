@@ -1,21 +1,21 @@
 # Java Project Template
 
 Tools:
-JDK 15
-Jenv
-Maven Wrapper
-Maven 3.6.3
+  - JDK 16 by default
+  - Jenv
+  - Maven Wrapper
+  - Maven 3.6.3
 
 Git:
-.gitignore
-.gitattributes
+  - .gitignore
+  - .gitattributes
 
 Github:
-Maven Build Workflow
+  - Maven Build Workflow
 
 OSS Parent:
-com.fasterxml:oss-parent
+  - com.fasterxml:oss-parent:40
 
 Dependencies:
-JUnit 5
-AssertJ
+  - JUnit 5
+  - AssertJ
