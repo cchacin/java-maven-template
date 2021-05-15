@@ -29,6 +29,8 @@
         <junit.version>5.7.1</junit.version>
         <assertj.version>3.19.0</assertj.version>
 
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
+
         <tagNameFormat>v@{project.version}</tagNameFormat>
         <preparationGoals>clean compile test-compile</preparationGoals>
 
@@ -36,6 +38,19 @@
     </properties>
 
     <dependencies>
+        <!-- Dependencies -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Test Dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
