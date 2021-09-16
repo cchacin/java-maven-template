@@ -4,7 +4,7 @@ Tools:
   - JDK 16 by default
   - Jenv
   - Maven Wrapper
-  - Maven 3.6.3
+  - Maven 3.8.2
 
 Git:
   - .gitignore
