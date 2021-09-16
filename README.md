@@ -1,8 +1,8 @@
 # Java Project Template
 
 Tools:
-  - JDK 16 by default
-  - Jenv
+  - JDK 17 by default
+  - JEnv
   - Maven Wrapper
   - Maven 3.8.2
 

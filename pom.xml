@@ -24,7 +24,7 @@
     </scm>
 
     <properties>
-        <maven.compiler.release>16</maven.compiler.release>
+        <maven.compiler.release>17</maven.compiler.release>
 
         <junit.version>5.7.1</junit.version>
         <assertj.version>3.19.0</assertj.version>
