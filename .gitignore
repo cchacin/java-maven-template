@@ -112,3 +112,5 @@ local.properties
 /docs/diagrams/
 pom.xml.releaseBackup
 release.properties
+
+/.jqwik-database
