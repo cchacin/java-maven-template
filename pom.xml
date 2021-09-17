@@ -12,6 +12,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <junit.version>5.8.0</junit.version>
         <assertj.version>3.20.2</assertj.version>
+        <record.builder.version>26</record.builder.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <tagNameFormat>v@{project.version}</tagNameFormat>
         <preparationGoals>clean compile test-compile</preparationGoals>
@@ -30,6 +31,19 @@
             <version>${mapstruct.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>io.soabase.record-builder</groupId>
+            <artifactId>record-builder-core</artifactId>
+            <version>${record.builder.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.soabase.record-builder</groupId>
+            <artifactId>record-builder-processor</artifactId>
+            <version>${record.builder.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
