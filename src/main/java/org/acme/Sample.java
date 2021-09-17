@@ -2,7 +2,7 @@ package org.acme;
 
 public class Sample {
 
-    String hi() {
-        return "hi";
-    }
+  String hi() {
+    return "hi";
+  }
 }

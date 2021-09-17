@@ -6,14 +6,12 @@ import org.junit.jupiter.api.Test;
 
 class SampleTest implements WithAssertions, WithAssumptions {
 
-    @Test
-    void test() throws Exception {
-        // Given
+  @Test
+  void test() throws Exception {
+    // Given
 
+    // When
 
-        // When
-
-
-        // Then
-    }
+    // Then
+  }
 }
