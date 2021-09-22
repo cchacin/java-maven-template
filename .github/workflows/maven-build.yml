@@ -1,5 +1,4 @@
 name: Maven Build
-
 on:
   push:
     branches:
@@ -12,18 +11,14 @@ on:
       - synchronize
       - reopened
       - ready_for_review
-
 jobs:
   build:
     name: "Maven Build"
     runs-on: ubuntu-latest
-
     steps:
       - name: "Checkout Sources"
         uses: actions/checkout@v2
         with:
-          # We must fetch at least the immediate parents so that if this is
-          # a pull request then we can checkout the head.
           fetch-depth: 2
       - name: "Set up JDK"
         uses: actions/setup-java@v2
