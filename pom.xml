@@ -12,6 +12,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <junit.version>5.8.1</junit.version>
         <archunit.version>0.21.0</archunit.version>
+        <awaitility.version>4.1.0</awaitility.version>
         <assertj.version>3.21.0</assertj.version>
         <jqwik.version>1.5.6</jqwik.version>
         <record.builder.version>28</record.builder.version>
@@ -57,6 +58,12 @@
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${awaitility.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
