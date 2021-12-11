@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: "temurin"
-          java-version: 17-ea
+          java-version: 17
           cache: "maven"
       - name: "Build with Maven"
         run: ./mvnw verify
