@@ -11,11 +11,11 @@
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
         <junit.version>5.8.2</junit.version>
-        <archunit.version>0.22.0</archunit.version>
-        <awaitility.version>4.1.1</awaitility.version>
-        <assertj.version>3.21.0</assertj.version>
-        <jqwik.version>1.6.1</jqwik.version>
-        <record.builder.version>29</record.builder.version>
+        <archunit.version>0.23.1</archunit.version>
+        <awaitility.version>4.2.0</awaitility.version>
+        <assertj.version>3.22.0</assertj.version>
+        <jqwik.version>1.6.5</jqwik.version>
+        <record.builder.version>33</record.builder.version>
         <mapstruct.version>1.4.2.Final</mapstruct.version>
         <tagNameFormat>v@{project.version}</tagNameFormat>
         <preparationGoals>clean compile test-compile</preparationGoals>
