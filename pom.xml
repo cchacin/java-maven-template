@@ -6,48 +6,55 @@
 
     <groupId>org.acme</groupId>
     <artifactId>example</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>lib</module>
+    </modules>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <junit.version>5.8.2</junit.version>
+        <junit.version>5.9.0</junit.version>
         <archunit.version>0.23.1</archunit.version>
         <awaitility.version>4.2.0</awaitility.version>
-        <assertj.version>3.22.0</assertj.version>
+        <assertj.version>3.23.1</assertj.version>
         <jqwik.version>1.6.5</jqwik.version>
-        <record.builder.version>33</record.builder.version>
-        <mapstruct.version>1.4.2.Final</mapstruct.version>
+        <record.builder.version>34</record.builder.version>
+        <mapstruct.version>1.5.2.Final</mapstruct.version>
         <tagNameFormat>v@{project.version}</tagNameFormat>
         <preparationGoals>clean compile test-compile</preparationGoals>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.soabase.record-builder</groupId>
+                <artifactId>record-builder-core</artifactId>
+                <version>${record.builder.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.soabase.record-builder</groupId>
+                <artifactId>record-builder-processor</artifactId>
+                <version>${record.builder.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>${mapstruct.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.soabase.record-builder</groupId>
-            <artifactId>record-builder-core</artifactId>
-            <version>${record.builder.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.soabase.record-builder</groupId>
-            <artifactId>record-builder-processor</artifactId>
-            <version>${record.builder.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -78,22 +85,20 @@
             <version>${archunit.version}</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.10.1</version>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.0.0-M7</version>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>3.0.0-M7</version>
                 <executions>
                     <execution>
                         <id>integration-test</id>
