@@ -14,13 +14,13 @@
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>
-        <junit.version>5.9.0</junit.version>
-        <archunit.version>0.23.1</archunit.version>
+        <junit.version>5.9.2</junit.version>
+        <archunit.version>1.0.1</archunit.version>
         <awaitility.version>4.2.0</awaitility.version>
-        <assertj.version>3.23.1</assertj.version>
-        <jqwik.version>1.6.5</jqwik.version>
-        <record.builder.version>34</record.builder.version>
-        <mapstruct.version>1.5.2.Final</mapstruct.version>
+        <assertj.version>3.24.2</assertj.version>
+        <jqwik.version>1.7.2</jqwik.version>
+        <record.builder.version>35</record.builder.version>
+        <mapstruct.version>1.5.3.Final</mapstruct.version>
         <tagNameFormat>v@{project.version}</tagNameFormat>
         <preparationGoals>clean compile test-compile</preparationGoals>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
