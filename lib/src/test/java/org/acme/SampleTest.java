@@ -1,19 +1,17 @@
 package org.acme;
 
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import org.acme.Sample.Input;
 import org.assertj.core.api.WithAssertions;
 import org.assertj.core.api.WithAssumptions;
-import org.junit.jupiter.api.Test;
 
 class SampleTest
         implements WithAssertions, WithAssumptions {
 
-    @Test
-    void test()
-            throws Exception {
-        // Given
-
-        // When
-
-        // Then
+    @Property
+    void sumTwoValuesIsValid(@ForAll final int x, @ForAll final int y) {
+        assertThat(new Sample().call(new Input(x, y)).result())
+                .isBetween(Long.MIN_VALUE, Long.MAX_VALUE);
     }
 }
