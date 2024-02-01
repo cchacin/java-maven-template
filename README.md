@@ -2,10 +2,10 @@
 
 Tools:
 
-- JDK 17 by default
+- JDK 21 by default
 - [JEnv](https://www.jenv.be/)
 - [Maven Wrapper](https://github.com/takari/maven-wrapper)
-- Maven 3.8.2
+- Maven 3.9.6
 
 Code Style:
 
