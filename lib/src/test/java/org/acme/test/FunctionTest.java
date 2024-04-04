@@ -1,10 +1,12 @@
-package org.acme;
+package org.acme.test;
 
-import net.jqwik.api.ForAll;
-import net.jqwik.api.Property;
+import org.acme.Function;
 import org.acme.Function.Input;
 import org.assertj.core.api.WithAssertions;
 import org.assertj.core.api.WithAssumptions;
+
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
 
 class FunctionTest
         implements WithAssertions, WithAssumptions {
