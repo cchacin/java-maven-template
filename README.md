@@ -2,9 +2,9 @@
 
 Tools:
 
-- JDK 21 by default
-- [JEnv](https://www.jenv.be/)
-- [Maven Wrapper](https://github.com/takari/maven-wrapper)
+- JDK 22
+- JEnv config
+- Maven Wrapper
 - Maven 3.9.7
 
 Code Style:
@@ -19,12 +19,6 @@ Git:
 GitHub Actions:
 
 - Maven Build Workflow
-
-Dependencies:
-
-- [JUnit 5](https://junit.org/junit5/)
-- [AssertJ](https://assertj.github.io/doc/)
-- [MapStruct](https://mapstruct.org/)
 
 Separated plugins for unit and integration tests, surefire and failsafe:
 
