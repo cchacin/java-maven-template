@@ -11,29 +11,6 @@
 
     <artifactId>lib</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${mapstruct.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.soabase.record-builder</groupId>
-            <artifactId>record-builder-core</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.soabase.record-builder</groupId>
-            <artifactId>record-builder-processor</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-
     <profiles>
         <profile>
             <id>shade</id>
@@ -46,7 +23,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-shade-plugin</artifactId>
-                        <version>3.4.1</version>
+                        <version>3.6.0</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
