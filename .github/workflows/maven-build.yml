@@ -3,14 +3,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - ready_for_review
 jobs:
   build:
     name: "Maven Build"
@@ -23,8 +15,8 @@ jobs:
       - name: "Setup JDK"
         uses: actions/setup-java@v4
         with:
-          distribution: "corretto"
-          java-version: 22
+          distribution: "oracle"
+          java-version: 23
           cache: "maven"
       - name: "Build with Maven"
         run: ./mvnw verify
