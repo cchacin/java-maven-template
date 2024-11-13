@@ -2,10 +2,10 @@
 
 Tools:
 
-- JDK 22
+- JDK 23
 - JEnv config
 - Maven Wrapper
-- Maven 3.9.7
+- Maven 3.9.9
 
 Code Style:
 
