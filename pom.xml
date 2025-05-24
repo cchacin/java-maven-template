@@ -10,15 +10,15 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.release>23</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <junit.version>5.12.1</junit.version>
         <awaitility.version>4.3.0</awaitility.version>
         <assertj.version>3.27.3</assertj.version>
         <jqwik.version>1.9.2</jqwik.version>
         <record.builder.version>41</record.builder.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
-        <instancio.version>5.4.0</instancio.version>
-        <archunit.version>1.4.0</archunit.version>
+        <instancio.version>5.4.1</instancio.version>
+        <archunit.version>1.4.1</archunit.version>
         <tagNameFormat>v@{project.version}</tagNameFormat>
         <preparationGoals>clean compile test-compile</preparationGoals>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -71,11 +71,11 @@
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.3</version>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.2</version>
+                <version>3.5.3</version>
                 <executions>
                     <execution>
                         <id>integration-test</id>
@@ -101,7 +101,7 @@
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
-                <version>2.44.3</version>
+                <version>2.44.4</version>
                 <configuration>
                     <java>
                         <googleJavaFormat>
