@@ -735,9 +735,6 @@ pre code {
     grid-template-columns: repeat(2, 1fr);  /* Force exactly 2 columns */
     gap: 2rem;
     margin-top: 2rem;
-    max-width: 1000px;  /* Limit width for better proportions */
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .step {
@@ -952,5 +949,14 @@ button:focus,
         font-size: 0.75rem;
         padding: 0.8rem;
         border-radius: 6px;
+    }
+}
+
+/* Large screens - constrain steps width for better readability */
+@media (min-width: 1400px) {
+    .steps {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
