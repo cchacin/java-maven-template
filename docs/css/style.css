@@ -154,13 +154,13 @@ nav {
 }
 
 .btn-secondary {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.15);  /* Slight background for contrast */
     color: white;
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);  /* Stronger border */
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.25);  /* More opacity on hover */
     border-color: white;
 }
 
@@ -421,7 +421,7 @@ li {
 }
 
 .badge-success {
-    background: #22c55e;
+    background: #16a34a;  /* Darker green for better contrast */
 }
 
 /* Footer */
@@ -438,12 +438,36 @@ footer p {
 }
 
 footer a {
-    color: var(--primary-color);
+    color: #60a5fa;  /* Lighter blue for better contrast on dark background */
     text-decoration: none;
 }
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Focus and keyboard navigation */
+a:focus,
+button:focus,
+.btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Skip to main content link for screen readers */
+.skip-to-main {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.skip-to-main:focus {
+    top: 6px;
 }
 
 /* Responsive Design */
