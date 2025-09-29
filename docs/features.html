@@ -6,6 +6,10 @@
     <title>Features - Java 25 Maven Template</title>
     <meta name="description" content="Comprehensive features of the Java 25 Maven template including testing, code quality, and modern development tools.">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </head>
 <body class="wide-layout">
     <a href="#main" class="skip-to-main">Skip to main content</a>
@@ -47,18 +51,20 @@
                     <h3>Compiler Configuration</h3>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-&lt;maven.compiler.release&gt;25&lt;/maven.compiler.release&gt;</div>
+                        <pre><code class="language-xml">&lt;maven.compiler.release&gt;25&lt;/maven.compiler.release&gt;</code></pre>
+                    </div>
                     <p>Uses the latest Java 25 compiler release setting for optimal compatibility and feature access.</p>
                 </div>
                 <div class="content-card">
                     <h3>CI/CD Integration</h3>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-- name: "Setup JDK"
+                        <pre><code class="language-yaml">- name: "Setup JDK"
   uses: actions/setup-java@v5
   with:
     distribution: "oracle"
-    java-version: 25</div>
+    java-version: 25</code></pre>
+                    </div>
                     <p>GitHub Actions workflow configured with Oracle JDK 25 for consistent builds and deployments.</p>
                 </div>
             </div>
@@ -106,10 +112,11 @@
             <h3 style="margin-top: 3rem;">Parallel Test Configuration</h3>
             <div class="code-block">
                 <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-junit.jupiter.execution.parallel.enabled = true
+                <pre><code class="language-properties">junit.jupiter.execution.parallel.enabled = true
 junit.jupiter.execution.parallel.config.strategy = dynamic
 junit.jupiter.execution.parallel.mode.default = concurrent
-junit.jupiter.execution.parallel.mode.classes.default = concurrent</div>
+junit.jupiter.execution.parallel.mode.classes.default = concurrent</code></pre>
+            </div>
         </div>
     </section>
 
@@ -124,18 +131,20 @@ junit.jupiter.execution.parallel.mode.classes.default = concurrent</div>
                     <p>Google Java Format with AOSP style automatically applied during compilation phase.</p>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-./mvnw spotless:apply  # Format code
-./mvnw spotless:check  # Verify formatting</div>
+                        <pre><code class="language-bash">./mvnw spotless:apply  # Format code
+./mvnw spotless:check  # Verify formatting</code></pre>
+                    </div>
                 </div>
                 <div class="content-card">
                     <h3>Automated Quality Gates</h3>
                     <p>Spotless formatting checks run automatically during the compile phase to ensure consistent code style.</p>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-&lt;execution&gt;
+                        <pre><code class="language-xml">&lt;execution&gt;
     &lt;goals&gt;&lt;goal&gt;check&lt;/goal&gt;&lt;/goals&gt;
     &lt;phase&gt;compile&lt;/phase&gt;
-&lt;/execution&gt;</div>
+&lt;/execution&gt;</code></pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -170,16 +179,18 @@ junit.jupiter.execution.parallel.mode.classes.default = concurrent</div>
                     <h3>.mvn/jvm.config</h3>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
--Xmx2048m -Xms512m -Djava.awt.headless=true</div>
+                        <pre><code class="language-properties">-Xmx2048m -Xms512m -Djava.awt.headless=true</code></pre>
+                    </div>
                     <p>Optimized heap settings and headless mode for CI environments.</p>
                 </div>
                 <div class="content-card">
                     <h3>.mvn/maven.config</h3>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
--B
+                        <pre><code class="language-properties">-B
 --fail-at-end
---no-transfer-progress</div>
+--no-transfer-progress</code></pre>
+                    </div>
                     <p>Batch mode and optimization flags for better CI/CD experience.</p>
                 </div>
             </div>
@@ -198,7 +209,8 @@ junit.jupiter.execution.parallel.mode.classes.default = concurrent</div>
                     <p>REPL development support with JShell Maven plugin for interactive Java development and experimentation.</p>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-./mvnw jshell:run</div>
+                        <pre><code class="language-bash">./mvnw jshell:run</code></pre>
+                    </div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📦</div>
@@ -216,7 +228,8 @@ junit.jupiter.execution.parallel.mode.classes.default = concurrent</div>
                     <p>Maven Shade plugin available via profile for creating executable JAR files with all dependencies.</p>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-./mvnw package -Pshade</div>
+                        <pre><code class="language-bash">./mvnw package -Pshade</code></pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -231,7 +244,7 @@ junit.jupiter.execution.parallel.mode.classes.default = concurrent</div>
                 <h3>GitHub Actions Workflow</h3>
                 <div class="code-block">
                     <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-name: Maven Build
+                    <pre><code class="language-yaml">name: Maven Build
 on:
   push:
     branches: [main]
@@ -247,7 +260,8 @@ jobs:
           java-version: 25
           cache: "maven"
       - name: "Build with Maven"
-        run: ./mvnw verify</div>
+        run: ./mvnw verify</code></pre>
+                </div>
                 <p>Complete CI/CD pipeline with Oracle JDK 25, Maven caching, and full verification including tests and quality checks.</p>
             </div>
         </div>

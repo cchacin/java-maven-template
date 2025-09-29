@@ -1,5 +1,21 @@
 // Interactive JavaScript for Java 25 Maven Template site
 
+// Prevent flash of wrong theme by applying theme as early as possible
+(function() {
+    const stored = localStorage.getItem('theme-preference');
+    const preference = stored || 'auto';
+
+    function getEffectiveTheme(pref) {
+        if (pref === 'auto') {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        return pref;
+    }
+
+    const effectiveTheme = getEffectiveTheme(preference);
+    document.documentElement.setAttribute('data-theme', effectiveTheme);
+})();
+
 document.addEventListener('DOMContentLoaded', function() {
     // Theme switcher functionality
     initializeThemeSystem();
@@ -36,7 +52,16 @@ function setupCopyButtons() {
  */
 function copyCode(button) {
     const codeBlock = button.parentNode;
-    const code = codeBlock.textContent.replace(button.textContent, '').trim();
+    let code;
+
+    // Try to find the code element within pre tags (new structure)
+    const codeElement = codeBlock.querySelector('pre code');
+    if (codeElement) {
+        code = codeElement.textContent.trim();
+    } else {
+        // Fallback to old structure (remove button text from parent)
+        code = codeBlock.textContent.replace(button.textContent, '').trim();
+    }
 
     // Try to use the modern Clipboard API
     if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -294,7 +319,6 @@ function initializeThemeSystem() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', handleSystemThemeChange);
 
-    console.log('Theme system initialized with preference:', preference);
 }
 
 /**
@@ -351,7 +375,6 @@ function applyTheme(theme, skipTransition = false) {
         });
     }
 
-    console.log('Applied theme:', theme, '(effective:', effectiveTheme + ')');
 }
 
 /**
@@ -404,8 +427,6 @@ function handleThemeToggle(event) {
 
     // Show notification
     showThemeChangeNotification(nextTheme);
-
-    console.log('Theme changed from', currentTheme, 'to', nextTheme);
 }
 
 /**
