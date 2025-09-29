@@ -61,7 +61,7 @@ nav {
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1400px;  /* Match container width */
     margin: 0 auto;
     padding: 0 2rem;
     display: flex;
@@ -97,7 +97,7 @@ nav {
 
 /* Container */
 .container {
-    max-width: 1200px;
+    max-width: 1400px;  /* Increased from 1200px for better code display */
     margin: 0 auto;
     padding: 0 2rem;
 }
@@ -180,7 +180,7 @@ nav {
 /* Feature Cards */
 .features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));  /* Wider minimum for code */
     gap: 2rem;
     margin-top: 3rem;
 }
@@ -222,16 +222,52 @@ nav {
 }
 
 /* Code Blocks */
-.code-block {
+.code-block,
+pre,
+code {
     background: var(--text-dark);
     color: #e2e8f0;
-    padding: 1.5rem;
     border-radius: 8px;
-    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-    font-size: 0.9rem;
-    margin: 1rem 0;
-    overflow-x: auto;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Source Code Pro', 'Menlo', 'Consolas', monospace;
     position: relative;
+}
+
+pre {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    white-space: pre;
+    word-wrap: normal;
+    /* Better scrolling on smaller screens */
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Inline code */
+code {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.875em;
+    background: #f1f5f9;
+    color: #334155;
+    border-radius: 4px;
+}
+
+/* Code inside pre tags */
+pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+}
+
+.code-block {
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    line-height: 1.5;
 }
 
 .copy-btn {
@@ -252,12 +288,72 @@ nav {
     background: rgba(255, 255, 255, 0.2);
 }
 
+/* Syntax highlighting for markdown code blocks */
+.highlight {
+    background: var(--text-dark);
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.highlight pre {
+    margin: 0;
+    padding: 1.5rem;
+    background: transparent;
+}
+
+/* Basic syntax highlighting colors */
+.highlight .k { color: #c792ea; } /* keywords */
+.highlight .s { color: #c3e88d; } /* strings */
+.highlight .c { color: #546e7a; } /* comments */
+.highlight .n { color: #eeffff; } /* names */
+.highlight .p { color: #89ddff; } /* punctuation */
+.highlight .o { color: #89ddff; } /* operators */
+.highlight .nb { color: #82aaff; } /* built-ins */
+.highlight .nf { color: #82aaff; } /* functions */
+
+/* Wide layout for pages with lots of code */
+.wide-layout .container {
+    max-width: 1600px;  /* Even wider for code-heavy pages */
+}
+
+.wide-layout .content-grid {
+    grid-template-columns: 1fr;  /* Single column for better code display */
+}
+
+/* Better handling of long command lines */
+pre code,
+.code-block {
+    word-break: break-all;      /* Allow breaking long lines */
+    white-space: pre-wrap;      /* Preserve formatting but allow wrapping */
+    word-wrap: break-word;      /* Legacy support */
+}
+
+/* But preserve exact formatting for specific code types */
+pre[class*="language-bash"] code,
+pre[class*="language-shell"] code,
+.code-block.bash,
+.code-block.shell {
+    word-break: normal;         /* Don't break command lines */
+    white-space: pre;           /* Preserve exact spacing */
+    overflow-x: auto;           /* Allow horizontal scrolling instead */
+}
+
+/* Improve readability with better line spacing */
+.highlight pre code,
+pre code {
+    display: block;
+    line-height: 1.6;           /* More readable line spacing */
+}
+
 /* Steps */
 .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(2, 1fr);  /* Force exactly 2 columns */
     gap: 2rem;
     margin-top: 2rem;
+    max-width: 1000px;  /* Limit width for better proportions */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .step {
@@ -280,7 +376,7 @@ nav {
 /* Content Grid */
 .content-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));  /* Wider minimum for code */
     gap: 3rem;
     margin-top: 2rem;
 }
@@ -370,6 +466,12 @@ footer a:hover {
 
     .features-grid {
         grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Adjust for mobile */
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Adjust for mobile */
     }
 
     .cta-buttons {
@@ -379,6 +481,30 @@ footer a:hover {
 
     .nav-links {
         gap: 1rem;
+    }
+
+    /* Steps: single column on tablet */
+    .steps {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+
+    /* Better code block handling on mobile */
+    pre, .code-block {
+        font-size: 0.8rem;
+        padding: 1rem;
+        margin: 1rem 0;
+        /* Allow horizontal scrolling on mobile for long lines */
+        overflow-x: auto;
+        white-space: pre;
+    }
+
+    /* Adjust copy button on mobile */
+    .copy-btn {
+        font-size: 0.7rem;
+        padding: 6px 10px;
+        top: 8px;
+        right: 8px;
     }
 }
 
@@ -393,5 +519,22 @@ footer a:hover {
 
     .section {
         padding: 3rem 0;
+    }
+
+    /* Extra small screens - single column everything */
+    .features-grid,
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 0.5rem;  /* Less padding on very small screens */
+    }
+
+    /* Smaller code blocks on tiny screens */
+    pre, .code-block {
+        font-size: 0.75rem;
+        padding: 0.8rem;
+        border-radius: 6px;
     }
 }

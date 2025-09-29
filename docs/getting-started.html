@@ -7,7 +7,7 @@
     <meta name="description" content="Complete guide to get started with the Java 25 Maven template for different scenarios and environments.">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="wide-layout">
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">Java 25 Template</a>
@@ -77,8 +77,8 @@
                     <h3>Clone Your Repository</h3>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name</div>
+git clone https://github.com/user/repo.git
+cd repo</div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
@@ -129,10 +129,8 @@ cd my-project-name</div>
                     <h3>Initialize Git (Optional)</h3>
                     <div class="code-block">
                         <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-rm -rf .git  # Remove existing git history
-git init
-git add .
-git commit -m "Initial commit"</div>
+rm -rf .git && git init
+git add . && git commit -m "Initial commit"</div>
                 </div>
                 <div class="step">
                     <div class="step-number">4</div>
