@@ -1,6 +1,9 @@
 // Interactive JavaScript for Java 25 Maven Template site
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme switcher functionality
+    initializeThemeSystem();
+
     // Copy code functionality
     setupCopyButtons();
 
@@ -250,4 +253,222 @@ function debounce(func, wait, immediate) {
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
+}
+
+/**
+ * Theme Management System
+ * Sophisticated theme switching with Auto/Light/Dark modes
+ */
+
+// Theme configuration
+const THEME_STORAGE_KEY = 'theme-preference';
+const THEME_CYCLE = ['auto', 'light', 'dark']; // Cycling order
+const THEMES = {
+    light: { icon: '☀️', label: 'Light' },
+    dark: { icon: '🌙', label: 'Dark' },
+    auto: { icon: '💻', label: 'Auto' }
+};
+
+/**
+ * Initialize the complete theme system
+ */
+function initializeThemeSystem() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const srOnlyText = document.querySelector('.sr-only');
+
+    if (!themeToggle || !themeIcon) {
+        console.warn('Theme switcher elements not found');
+        return;
+    }
+
+    // Initialize theme on page load
+    const preference = getThemePreference();
+    applyTheme(preference, true); // Skip transition on initial load
+    updateThemeUI(preference);
+
+    // Set up event listeners
+    themeToggle.addEventListener('click', handleThemeToggle);
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+
+    console.log('Theme system initialized with preference:', preference);
+}
+
+/**
+ * Get current theme preference from localStorage
+ */
+function getThemePreference() {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    return stored && THEME_CYCLE.includes(stored) ? stored : 'auto';
+}
+
+/**
+ * Save theme preference to localStorage
+ */
+function saveThemePreference(theme) {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+}
+
+/**
+ * Get the effective theme (resolves 'auto' to actual theme)
+ */
+function getEffectiveTheme(preference = getThemePreference()) {
+    if (preference === 'auto') {
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return preference;
+}
+
+/**
+ * Apply theme to the document
+ */
+function applyTheme(theme, skipTransition = false) {
+    const effectiveTheme = getEffectiveTheme(theme);
+    const root = document.documentElement;
+
+    // Add transition prevention class if needed
+    if (skipTransition) {
+        root.style.transition = 'none';
+    }
+
+    // Remove existing theme attributes
+    root.removeAttribute('data-theme');
+
+    // Apply new theme via data attribute
+    if (effectiveTheme === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+    } else {
+        root.setAttribute('data-theme', 'light');
+    }
+
+    // Re-enable transitions after a frame
+    if (skipTransition) {
+        requestAnimationFrame(() => {
+            root.style.transition = '';
+        });
+    }
+
+    console.log('Applied theme:', theme, '(effective:', effectiveTheme + ')');
+}
+
+/**
+ * Get next theme in the cycle
+ */
+function getNextTheme(currentTheme) {
+    const currentIndex = THEME_CYCLE.indexOf(currentTheme);
+    const nextIndex = (currentIndex + 1) % THEME_CYCLE.length;
+    return THEME_CYCLE[nextIndex];
+}
+
+/**
+ * Update UI elements to reflect current theme
+ */
+function updateThemeUI(preference = getThemePreference()) {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const srOnlyText = document.querySelector('.sr-only');
+
+    if (!themeToggle || !themeIcon) return;
+
+    const themeConfig = THEMES[preference];
+    if (!themeConfig) return;
+
+    // Update icon and labels
+    themeIcon.textContent = themeConfig.icon;
+    const label = `Switch theme (currently ${themeConfig.label})`;
+    themeToggle.setAttribute('aria-label', label);
+    themeToggle.setAttribute('title', label);
+
+    if (srOnlyText) {
+        srOnlyText.textContent = `Current theme: ${themeConfig.label}`;
+    }
+}
+
+/**
+ * Handle theme toggle button click
+ */
+function handleThemeToggle(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const currentTheme = getThemePreference();
+    const nextTheme = getNextTheme(currentTheme);
+
+    // Save and apply new theme
+    saveThemePreference(nextTheme);
+    applyTheme(nextTheme);
+    updateThemeUI(nextTheme);
+
+    // Show notification
+    showThemeChangeNotification(nextTheme);
+
+    console.log('Theme changed from', currentTheme, 'to', nextTheme);
+}
+
+/**
+ * Handle system theme change (when user changes OS theme)
+ */
+function handleSystemThemeChange() {
+    const preference = getThemePreference();
+    if (preference === 'auto') {
+        applyTheme('auto');
+        showThemeChangeNotification('auto', 'System theme changed');
+    }
+}
+
+/**
+ * Show theme change notification
+ */
+function showThemeChangeNotification(theme, customMessage = null) {
+    const themeConfig = THEMES[theme];
+    if (!themeConfig) return;
+
+    const message = customMessage || `Theme changed to ${themeConfig.label}`;
+
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--bg-white);
+        color: var(--text-dark);
+        padding: 12px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        box-shadow: var(--shadow-lg);
+        z-index: 1000;
+        font-size: 0.9rem;
+        font-weight: 500;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        transform: translateX(-50%) translateY(10px);
+        max-width: 90vw;
+        text-align: center;
+    `;
+
+    document.body.appendChild(notification);
+
+    // Animate in
+    requestAnimationFrame(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(-50%) translateY(0)';
+    });
+
+    // Remove after 2.5 seconds
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(-50%) translateY(-10px)';
+
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 2500);
 }

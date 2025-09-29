@@ -6,17 +6,137 @@
     box-sizing: border-box;
 }
 
+/* Catppuccin Frappe (Light Theme) - Default */
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #64748b;
-    --accent-color: #f59e0b;
-    --text-dark: #1e293b;
-    --text-light: #64748b;
-    --bg-light: #f8fafc;
-    --bg-white: #ffffff;
-    --border-color: #e2e8f0;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    /* Catppuccin Frappe color palette */
+    --ctp-rosewater: #f2d5cf;
+    --ctp-flamingo: #eebebe;
+    --ctp-pink: #f4b8e4;
+    --ctp-mauve: #ca9ee6;
+    --ctp-red: #e78284;
+    --ctp-maroon: #ea999c;
+    --ctp-peach: #ef9f76;
+    --ctp-yellow: #e5c890;
+    --ctp-green: #a6d189;
+    --ctp-teal: #81c8be;
+    --ctp-sky: #99d1db;
+    --ctp-sapphire: #85c1dc;
+    --ctp-blue: #8caaee;
+    --ctp-lavender: #babbf1;
+    --ctp-text: #c6d0f5;
+    --ctp-subtext1: #b5bfe2;
+    --ctp-subtext0: #a5adce;
+    --ctp-overlay2: #949cbb;
+    --ctp-overlay1: #838ba7;
+    --ctp-overlay0: #737994;
+    --ctp-surface2: #626880;
+    --ctp-surface1: #51576d;
+    --ctp-surface0: #414559;
+    --ctp-base: #303446;
+    --ctp-mantle: #292c3c;
+    --ctp-crust: #232634;
+
+    /* Semantic mappings for light theme (Frappe) */
+    --primary-color: var(--ctp-blue);
+    --secondary-color: var(--ctp-surface2);
+    --accent-color: var(--ctp-peach);
+    --text-dark: var(--ctp-text);
+    --text-light: var(--ctp-subtext1);
+    --bg-light: var(--ctp-base);
+    --bg-white: var(--ctp-mantle);
+    --border-color: var(--ctp-surface0);
+    --shadow: 0 4px 6px -1px rgba(35, 38, 52, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(35, 38, 52, 0.3);
+
+    /* Transitions for smooth theme switching */
+    --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Catppuccin Macchiato (Dark Theme) */
+[data-theme="dark"] {
+    /* Catppuccin Macchiato color palette */
+    --ctp-rosewater: #f4dbd6;
+    --ctp-flamingo: #f0c6c6;
+    --ctp-pink: #f5bde6;
+    --ctp-mauve: #c6a0f6;
+    --ctp-red: #ed8796;
+    --ctp-maroon: #ee99a0;
+    --ctp-peach: #f5a97f;
+    --ctp-yellow: #eed49f;
+    --ctp-green: #a6da95;
+    --ctp-teal: #8bd5ca;
+    --ctp-sky: #91d7e3;
+    --ctp-sapphire: #7dc4e4;
+    --ctp-blue: #8aadf4;
+    --ctp-lavender: #b7bdf8;
+    --ctp-text: #cad3f5;
+    --ctp-subtext1: #b8c0e0;
+    --ctp-subtext0: #a5adcb;
+    --ctp-overlay2: #939ab7;
+    --ctp-overlay1: #8087a2;
+    --ctp-overlay0: #6e738d;
+    --ctp-surface2: #5b6078;
+    --ctp-surface1: #494d64;
+    --ctp-surface0: #363a4f;
+    --ctp-base: #24273a;
+    --ctp-mantle: #1e2030;
+    --ctp-crust: #181926;
+
+    /* Semantic mappings for dark theme (Macchiato) */
+    --primary-color: var(--ctp-blue);
+    --secondary-color: var(--ctp-surface2);
+    --accent-color: var(--ctp-peach);
+    --text-dark: var(--ctp-text);
+    --text-light: var(--ctp-subtext1);
+    --bg-light: var(--ctp-base);
+    --bg-white: var(--ctp-mantle);
+    --border-color: var(--ctp-surface0);
+    --shadow: 0 4px 6px -1px rgba(24, 25, 38, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(24, 25, 38, 0.4);
+}
+
+/* Auto theme detection - respects system preference */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        /* Use Macchiato colors when system prefers dark and no explicit theme set */
+        --ctp-rosewater: #f4dbd6;
+        --ctp-flamingo: #f0c6c6;
+        --ctp-pink: #f5bde6;
+        --ctp-mauve: #c6a0f6;
+        --ctp-red: #ed8796;
+        --ctp-maroon: #ee99a0;
+        --ctp-peach: #f5a97f;
+        --ctp-yellow: #eed49f;
+        --ctp-green: #a6da95;
+        --ctp-teal: #8bd5ca;
+        --ctp-sky: #91d7e3;
+        --ctp-sapphire: #7dc4e4;
+        --ctp-blue: #8aadf4;
+        --ctp-lavender: #b7bdf8;
+        --ctp-text: #cad3f5;
+        --ctp-subtext1: #b8c0e0;
+        --ctp-subtext0: #a5adcb;
+        --ctp-overlay2: #939ab7;
+        --ctp-overlay1: #8087a2;
+        --ctp-overlay0: #6e738d;
+        --ctp-surface2: #5b6078;
+        --ctp-surface1: #494d64;
+        --ctp-surface0: #363a4f;
+        --ctp-base: #24273a;
+        --ctp-mantle: #1e2030;
+        --ctp-crust: #181926;
+
+        --primary-color: var(--ctp-blue);
+        --secondary-color: var(--ctp-surface2);
+        --accent-color: var(--ctp-peach);
+        --text-dark: var(--ctp-text);
+        --text-light: var(--ctp-subtext1);
+        --bg-light: var(--ctp-base);
+        --bg-white: var(--ctp-mantle);
+        --border-color: var(--ctp-surface0);
+        --shadow: 0 4px 6px -1px rgba(24, 25, 38, 0.4);
+        --shadow-lg: 0 10px 15px -3px rgba(24, 25, 38, 0.4);
+    }
 }
 
 body {
@@ -24,6 +144,7 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-light);
+    transition: var(--transition-theme);
 }
 
 /* Typography */
@@ -58,6 +179,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: var(--transition-theme);
 }
 
 .nav-container {
@@ -93,6 +215,54 @@ nav {
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--primary-color);
+}
+
+/* Theme Switcher Button */
+.theme-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: var(--transition-theme), transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    color: var(--text-dark);
+    background-color: var(--bg-white);
+    margin-left: 1rem;
+    font-size: 1.125rem;
+    line-height: 1;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-light);
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.theme-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Screen reader only text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* Container */
