@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Java 25 Maven Template</title>
+    <meta name="description" content="Comprehensive features of the Java 25 Maven template including testing, code quality, and modern development tools.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Java 25 Template</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html" class="active">Features</a></li>
+                <li><a href="getting-started.html">Get Started</a></li>
+                <li><a href="development.html">Development</a></li>
+                <li><a href="https://github.com/cchacin/java-maven-template" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Template Features</h1>
+            <p>Everything you need for modern Java 25 development with best practices built-in</p>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <div class="badge badge-primary">Core Feature</div>
+            <h2>Java 25 Ready</h2>
+            <p>This template is built specifically for Java 25, taking advantage of the latest language features and improvements.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Compiler Configuration</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+&lt;maven.compiler.release&gt;25&lt;/maven.compiler.release&gt;</div>
+                    <p>Uses the latest Java 25 compiler release setting for optimal compatibility and feature access.</p>
+                </div>
+                <div class="content-card">
+                    <h3>CI/CD Integration</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+- name: "Setup JDK"
+  uses: actions/setup-java@v5
+  with:
+    distribution: "oracle"
+    java-version: 25</div>
+                    <p>GitHub Actions workflow configured with Oracle JDK 25 for consistent builds and deployments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Testing Excellence</h2>
+            <p>Comprehensive testing setup with separation of concerns and modern testing libraries.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Separated Test Execution</h3>
+                    <p><strong>Surefire Plugin</strong> for unit tests (*Test.java) and <strong>Failsafe Plugin</strong> for integration tests (*IT.java) with different execution phases.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Parallel Test Execution</h3>
+                    <p>JUnit Platform configured for parallel test execution with dynamic strategy for faster feedback loops.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Property-Based Testing</h3>
+                    <p><strong>jqwik 1.9.3</strong> for property-based testing to discover edge cases automatically with generated test data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📐</div>
+                    <h3>Architecture Testing</h3>
+                    <p><strong>ArchUnit 1.4.1</strong> for testing architectural rules and ensuring code structure compliance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>Fluent Assertions</h3>
+                    <p><strong>AssertJ 3.27.6</strong> for readable and maintainable test assertions with fluent API.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎲</div>
+                    <h3>Test Data Generation</h3>
+                    <p><strong>Instancio 5.5.1</strong> for generating test data objects automatically with customizable constraints.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Parallel Test Configuration</h3>
+            <div class="code-block">
+                <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+junit.jupiter.execution.parallel.enabled = true
+junit.jupiter.execution.parallel.config.strategy = dynamic
+junit.jupiter.execution.parallel.mode.default = concurrent
+junit.jupiter.execution.parallel.mode.classes.default = concurrent</div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <h2>Code Quality & Formatting</h2>
+            <p>Automated code quality enforcement with industry-standard formatting and best practices.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Spotless Code Formatting</h3>
+                    <p>Google Java Format with AOSP style automatically applied during compilation phase.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw spotless:apply  # Format code
+./mvnw spotless:check  # Verify formatting</div>
+                </div>
+                <div class="content-card">
+                    <h3>Automated Quality Gates</h3>
+                    <p>Spotless formatting checks run automatically during the compile phase to ensure consistent code style.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+&lt;execution&gt;
+    &lt;goals&gt;&lt;goal&gt;check&lt;/goal&gt;&lt;/goals&gt;
+    &lt;phase&gt;compile&lt;/phase&gt;
+&lt;/execution&gt;</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Maven Configuration & Best Practices</h2>
+            <p>Optimized Maven configuration with wrapper for consistent builds across environments.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Maven Wrapper</h3>
+                    <p>No need to install Maven locally. The wrapper ensures consistent Maven version across all environments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>JVM Configuration</h3>
+                    <p>Optimized JVM settings in .mvn/jvm.config for better performance and headless operation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Maven Optimizations</h3>
+                    <p>Batch mode, fail-at-end, and no transfer progress for cleaner CI/CD output.</p>
+                </div>
+            </div>
+
+            <h3>Configuration Files</h3>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>.mvn/jvm.config</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+-Xmx2048m -Xms512m -Djava.awt.headless=true</div>
+                    <p>Optimized heap settings and headless mode for CI environments.</p>
+                </div>
+                <div class="content-card">
+                    <h3>.mvn/maven.config</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+-B
+--fail-at-end
+--no-transfer-progress</div>
+                    <p>Batch mode and optimization flags for better CI/CD experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <h2>Development Tools</h2>
+            <p>Modern development tools and integrations for enhanced productivity.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🐚</div>
+                    <h3>JShell Integration</h3>
+                    <p>REPL development support with JShell Maven plugin for interactive Java development and experimentation.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw jshell:run</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Modularization Ready</h3>
+                    <p>Java Platform Module System (JPMS) configured with module-info.java files for both main and test sources.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>jenv Configuration</h3>
+                    <p>Java version management with jenv for easy switching between different Java versions in development.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Fat JAR Support</h3>
+                    <p>Maven Shade plugin available via profile for creating executable JAR files with all dependencies.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw package -Pshade</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>CI/CD & Automation</h2>
+            <p>GitHub Actions workflow ready for continuous integration and deployment.</p>
+
+            <div class="content-card">
+                <h3>GitHub Actions Workflow</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+name: Maven Build
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: "Setup JDK"
+        uses: actions/setup-java@v5
+        with:
+          distribution: "oracle"
+          java-version: 25
+          cache: "maven"
+      - name: "Build with Maven"
+        run: ./mvnw verify</div>
+                <p>Complete CI/CD pipeline with Oracle JDK 25, Maven caching, and full verification including tests and quality checks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container" style="text-align: center;">
+            <h2>Ready to Use All These Features?</h2>
+            <p>Start your Java 25 project with all these best practices and tools pre-configured.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/cchacin/java-maven-template/generate" class="btn btn-primary" target="_blank">Use This Template</a>
+                <a href="getting-started.html" class="btn btn-secondary">Get Started Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Created by <a href="https://carloschac.in" target="_blank">Carlos Chacin</a> • <a href="https://github.com/cchacin/java-maven-template" target="_blank">View on GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

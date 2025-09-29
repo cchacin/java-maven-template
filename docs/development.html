@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Guide - Java 25 Maven Template</title>
+    <meta name="description" content="Developer workflow guide for the Java 25 Maven template including testing strategies, code quality, and best practices.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Java 25 Template</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="getting-started.html">Get Started</a></li>
+                <li><a href="development.html" class="active">Development</a></li>
+                <li><a href="https://github.com/cchacin/java-maven-template" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Development Guide</h1>
+            <p>Best practices, workflows, and advanced usage for productive Java 25 development</p>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <h2>Development Workflow</h2>
+            <p>Recommended workflow for daily development with the template's tools and configurations.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Start Development</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw compile  # Compile and format check
+./mvnw test     # Run unit tests</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Write Code & Tests</h3>
+                    <p>Write your implementation in <code>src/main/java</code> and corresponding tests in <code>src/test/java</code></p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Continuous Testing</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw test -Dtest=YourTestClass  # Run specific test
+./mvnw spotless:apply             # Format code</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Pre-commit Validation</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw verify  # Full build with all tests</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Testing Strategy</h2>
+            <p>Comprehensive testing approach with unit tests, integration tests, property-based testing, and architecture validation.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Unit Tests</h3>
+                    <p>Fast, isolated tests using JUnit 5 and AssertJ. Filename pattern: <code>*Test.java</code></p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw test  # Runs only unit tests</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Integration Tests</h3>
+                    <p>Component and system integration tests. Filename pattern: <code>*IT.java</code></p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw integration-test  # Runs only IT tests</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎲</div>
+                    <h3>Property-Based Testing</h3>
+                    <p>Automated test case generation with jqwik for discovering edge cases.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+@Property
+void testProperty(@ForAll int value) {
+    // Test logic with generated values
+}</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏛️</div>
+                    <h3>Architecture Tests</h3>
+                    <p>Validate architectural rules and code structure with ArchUnit.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+@Test
+void layersShouldBeRespected() {
+    layeredArchitecture()
+        .whereLayer("Controller").mayNotAccessAnyLayer()
+        .check(classes);
+}</div>
+                </div>
+            </div>
+
+            <h3>Test Configuration Example</h3>
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>Unit Test Example</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+@ExtendWith(MockitoExtension.class)
+class ServiceTest implements WithAssertions {
+
+    @Mock
+    private Repository repository;
+
+    @InjectMocks
+    private Service service;
+
+    @Test
+    void shouldReturnExpectedResult() {
+        // given
+        var input = create(InputData.class);
+        when(repository.find(any())).thenReturn(expectedData);
+
+        // when
+        var result = service.process(input);
+
+        // then
+        assertThat(result).satisfies(data -> {
+            assertThat(data.getId()).isNotNull();
+            assertThat(data.getValue()).isEqualTo(expected);
+        });
+    }
+}</div>
+                </div>
+                <div class="content-card">
+                    <h3>Integration Test Example</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+class ApplicationIT implements WithAssertions {
+
+    private TestContainer container;
+
+    @BeforeAll
+    void startContainer() {
+        container = new TestContainer().start();
+    }
+
+    @Test
+    void shouldProcessCompleteWorkflow() {
+        // Full integration test
+        var result = application.processWorkflow(testData);
+
+        assertThat(result)
+            .hasFieldOrPropertyWithValue("status", "SUCCESS")
+            .hasFieldOrPropertyWithValue("processed", true);
+    }
+
+    @AfterAll
+    void stopContainer() {
+        container.stop();
+    }
+}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <h2>Code Quality & Formatting</h2>
+            <p>Automated code quality enforcement with Spotless and best practices.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🎨 Code Formatting</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Apply formatting to all files
+./mvnw spotless:apply
+
+# Check formatting without changes
+./mvnw spotless:check
+
+# Format specific files
+./mvnw spotless:apply -Dspotless.files=src/main/java/YourClass.java</div>
+                    <p>Uses Google Java Format with AOSP style for consistent code formatting.</p>
+                </div>
+                <div class="content-card">
+                    <h3>✅ Quality Gates</h3>
+                    <p>Formatting is automatically checked during compilation:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw compile  # Fails if code is not formatted</div>
+                    <p>This ensures all code follows the same style conventions.</p>
+                </div>
+            </div>
+
+            <h3>IDE Integration</h3>
+            <div class="content-card">
+                <h4>IntelliJ IDEA Setup</h4>
+                <ol>
+                    <li>Install "google-java-format" plugin</li>
+                    <li>Go to Settings → Other Settings → google-java-format Settings</li>
+                    <li>Check "Enable google-java-format"</li>
+                    <li>Select "AOSP style"</li>
+                    <li>Enable "Reformat code" and "Optimize imports"</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Interactive Development with JShell</h2>
+            <p>Use JShell for rapid prototyping and interactive development.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🐚 Starting JShell</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Start JShell with project classpath
+./mvnw jshell:run
+
+# Alternative: compile first, then start
+./mvnw compile
+./mvnw jshell:run</div>
+                    <p>JShell starts with your project's compiled classes and dependencies on the classpath.</p>
+                </div>
+                <div class="content-card">
+                    <h3>💡 JShell Usage Examples</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+// Import your classes
+import org.acme.*;
+
+// Create instances and experiment
+var func = new Function();
+var input = new Function.Input(10, 20);
+var result = func.add(input);
+System.out.println(result);
+
+// Test different scenarios interactively
+/exit  // Exit JShell</div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>🎯 JShell Best Practices</h3>
+                <ul>
+                    <li>Use JShell for quick experimentation and API exploration</li>
+                    <li>Test edge cases before writing formal tests</li>
+                    <li>Prototype complex logic interactively</li>
+                    <li>Use <code>/help</code> for available JShell commands</li>
+                    <li>Save useful snippets to files with <code>/save filename.jsh</code></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <h2>Maven Wrapper & Commands</h2>
+            <p>Essential Maven commands using the wrapper for consistent builds across environments.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔨</div>
+                    <h3>Build Lifecycle</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw clean         # Clean build artifacts
+./mvnw compile       # Compile main sources
+./mvnw test-compile  # Compile test sources
+./mvnw test          # Run unit tests
+./mvnw package       # Create JAR file
+./mvnw verify        # Run all tests + checks
+./mvnw install       # Install to local repo</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Testing Commands</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Run specific test class
+./mvnw test -Dtest=ClassName
+
+# Run specific test method
+./mvnw test -Dtest=ClassName#methodName
+
+# Run tests with pattern
+./mvnw test -Dtest="*ServiceTest"
+
+# Skip tests during build
+./mvnw package -DskipTests</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Packaging & Profiles</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Create fat JAR with dependencies
+./mvnw package -Pshade
+
+# Clean and package
+./mvnw clean package
+
+# Install without running tests
+./mvnw install -DskipTests</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Analysis & Information</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Display dependency tree
+./mvnw dependency:tree
+
+# Check for updates
+./mvnw versions:display-dependency-updates
+
+# Display effective POM
+./mvnw help:effective-pom</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Modularization with JPMS</h2>
+            <p>Java Platform Module System (JPMS) configuration for modern modular applications.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>📦 Main Module Configuration</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+// src/main/java/module-info.java
+module org.acme {
+    exports org.acme;
+
+    // Add dependencies as needed
+    // requires java.logging;
+    // requires transitive java.base;
+}</div>
+                    <p>Configure your main module with exports and required dependencies.</p>
+                </div>
+                <div class="content-card">
+                    <h3>🧪 Test Module Configuration</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+// src/test/java/module-info.java
+open module org.acme.test {
+    requires org.acme;
+    requires org.junit.jupiter.api;
+    requires org.assertj.core;
+    requires net.jqwik.api;
+}</div>
+                    <p>Test module opens packages for reflection-based testing frameworks.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>🎯 Modularization Best Practices</h3>
+                <ul>
+                    <li>Start with a simple module structure and evolve as needed</li>
+                    <li>Use <code>exports</code> to control API surface area</li>
+                    <li>Prefer <code>requires transitive</code> for dependencies that are part of your API</li>
+                    <li>Use <code>open module</code> in tests to allow reflection access</li>
+                    <li>Consider splitting large applications into multiple modules</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <h2>CI/CD with GitHub Actions</h2>
+            <p>Automated build, test, and quality checks on every push to the main branch.</p>
+
+            <div class="content-card">
+                <h3>🔄 Workflow Overview</h3>
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+name: Maven Build
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Sources"
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: "Setup JDK"
+        uses: actions/setup-java@v5
+        with:
+          distribution: "oracle"
+          java-version: 25
+          cache: "maven"
+
+      - name: "Build with Maven"
+        run: ./mvnw verify</div>
+            </div>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>✅ What Gets Validated</h3>
+                    <ul>
+                        <li><strong>Code Compilation</strong> - Java 25 syntax and compilation</li>
+                        <li><strong>Code Formatting</strong> - Spotless formatting checks</li>
+                        <li><strong>Unit Tests</strong> - All *Test.java classes</li>
+                        <li><strong>Integration Tests</strong> - All *IT.java classes</li>
+                        <li><strong>Package Creation</strong> - JAR file generation</li>
+                    </ul>
+                </div>
+                <div class="content-card">
+                    <h3>🚀 Optimization Features</h3>
+                    <ul>
+                        <li><strong>Maven Caching</strong> - Dependencies cached between runs</li>
+                        <li><strong>Oracle JDK 25</strong> - Latest Java version for CI</li>
+                        <li><strong>Fast Checkout</strong> - Shallow clone with depth=2</li>
+                        <li><strong>Parallel Execution</strong> - Tests run in parallel</li>
+                        <li><strong>No Transfer Progress</strong> - Cleaner CI output</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Performance & Optimization</h2>
+            <p>Configuration and tips for optimal performance during development and production.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>JVM Configuration</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# .mvn/jvm.config
+-Xmx2048m -Xms512m -Djava.awt.headless=true</div>
+                    <p>Optimized heap settings and headless mode for better performance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Maven Configuration</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# .mvn/maven.config
+-B
+--fail-at-end
+--no-transfer-progress</div>
+                    <p>Batch mode and optimizations for faster, cleaner builds.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧪</div>
+                    <h3>Parallel Testing</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# junit-platform.properties
+junit.jupiter.execution.parallel.enabled = true
+junit.jupiter.execution.parallel.config.strategy = dynamic</div>
+                    <p>Dynamic parallel test execution for faster feedback.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Build Optimization</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Skip tests during development
+./mvnw compile -DskipTests
+
+# Offline mode (if all deps cached)
+./mvnw compile -o
+
+# Multiple threads
+./mvnw compile -T 4</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container" style="text-align: center;">
+            <h2>Ready for Production Development?</h2>
+            <p>Start building your Java 25 application with confidence using these proven practices and configurations.</p>
+            <div class="cta-buttons">
+                <a href="https://github.com/cchacin/java-maven-template/generate" class="btn btn-primary" target="_blank">Use This Template</a>
+                <a href="features.html" class="btn btn-secondary">View All Features</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Created by <a href="https://carloschac.in" target="_blank">Carlos Chacin</a> • <a href="https://github.com/cchacin/java-maven-template" target="_blank">View on GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+# GitHub Pages configuration for Java 25 Maven Template
+
+# Site settings
+title: "Java 25 Maven Template"
+description: "Modern Java 25 Maven template with best practices, testing, and CI/CD ready to use"
+url: "https://cchacin.github.io"
+baseurl: "/java-maven-template"
+
+# Repository information
+repository: "cchacin/java-maven-template"
+
+# Author information
+author:
+  name: "Carlos Chacin"
+  email: "carloschac.in@gmail.com"
+  url: "https://carloschac.in"
+
+# GitHub Pages settings
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+# Exclude from processing
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .sass-cache
+  - .jekyll-cache
+  - gemfiles
+  - package.json
+  - package-lock.json
+
+# Include files
+include:
+  - _pages
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Sass configuration
+sass:
+  style: compressed
+
+# Collections (if needed in future)
+collections_dir: collections
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# SEO and social
+social:
+  name: "Carlos Chacin"
+  links:
+    - "https://github.com/cchacin"
+    - "https://carloschac.in"
+
+# GitHub metadata (for GitHub Pages)
+github:
+  repository_url: "https://github.com/cchacin/java-maven-template"
+
+# Theme (using default GitHub Pages theme for now)
+theme: minima
+
+# Custom variables for the template
+template:
+  version: "1.0.0"
+  java_version: "25"
+  features:
+    - "Java 25 Ready"
+    - "Maven Wrapper"
+    - "Testing Excellence"
+    - "Code Quality"
+    - "CI/CD Ready"
+    - "JShell Integration"

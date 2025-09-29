@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Java 25 Maven Template</title>
+    <meta name="description" content="Complete guide to get started with the Java 25 Maven template for different scenarios and environments.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Java 25 Template</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="getting-started.html" class="active">Get Started</a></li>
+                <li><a href="development.html">Development</a></li>
+                <li><a href="https://github.com/cchacin/java-maven-template" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Getting Started</h1>
+            <p>Choose your path to start using the Java 25 Maven template based on your setup and preferences</p>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <h2>Choose Your Scenario</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🐙</div>
+                    <h3>With GitHub Account</h3>
+                    <p>Recommended approach using GitHub's template feature for easy setup and version control.</p>
+                    <a href="#github-scenario" class="btn btn-primary">Start Here</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Without GitHub Account</h3>
+                    <p>Download and set up the template manually, optionally initialize Git for version control.</p>
+                    <a href="#no-github-scenario" class="btn btn-primary">Start Here</a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>No Git Required</h3>
+                    <p>Quick start for evaluation or simple projects without version control setup.</p>
+                    <a href="#no-git-scenario" class="btn btn-primary">Start Here</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light" id="github-scenario">
+        <div class="container">
+            <div class="badge badge-primary">Recommended</div>
+            <h2>Scenario 1: With GitHub Account</h2>
+            <p>This is the easiest and most recommended approach if you have a GitHub account.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Use Template</h3>
+                    <p>Click the "Use this template" button on the GitHub repository page.</p>
+                    <a href="https://github.com/cchacin/java-maven-template/generate" class="btn btn-primary" target="_blank">Use This Template</a>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Configure Repository</h3>
+                    <p>Choose a repository name, set visibility (public/private), and optionally add a description.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Clone Your Repository</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+git clone https://github.com/yourusername/your-repo-name.git
+cd your-repo-name</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Verify Setup</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw test</div>
+                    <p>This will download dependencies and run all tests to verify everything works.</p>
+                </div>
+            </div>
+
+            <div class="content-card" style="margin-top: 2rem;">
+                <h3>🎉 You're Ready to Code!</h3>
+                <p>Your repository is set up with:</p>
+                <ul>
+                    <li>GitHub Actions CI/CD automatically enabled</li>
+                    <li>All dependencies and configurations ready</li>
+                    <li>Example code and tests to build upon</li>
+                    <li>Version control history starts fresh</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white" id="no-github-scenario">
+        <div class="container">
+            <h2>Scenario 2: Without GitHub Account</h2>
+            <p>Download the template and set it up manually with optional Git initialization.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download Template</h3>
+                    <p>Download the repository as a ZIP file from GitHub.</p>
+                    <a href="https://github.com/cchacin/java-maven-template/archive/refs/heads/main.zip" class="btn btn-primary" target="_blank">Download ZIP</a>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Extract & Rename</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+unzip java-maven-template-main.zip
+mv java-maven-template-main my-project-name
+cd my-project-name</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Initialize Git (Optional)</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+rm -rf .git  # Remove existing git history
+git init
+git add .
+git commit -m "Initial commit"</div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Verify Setup</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw test</div>
+                </div>
+            </div>
+
+            <div class="content-grid" style="margin-top: 2rem;">
+                <div class="content-card">
+                    <h3>🔧 Optional: Connect to Remote Repository</h3>
+                    <p>If you want to push to a remote Git repository later:</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+git remote add origin https://your-repo-url.git
+git branch -M main
+git push -u origin main</div>
+                </div>
+                <div class="content-card">
+                    <h3>📝 Update Project Information</h3>
+                    <p>Don't forget to update the project details in pom.xml:</p>
+                    <ul>
+                        <li>groupId (org.acme → your.domain)</li>
+                        <li>artifactId (lib → your-project-name)</li>
+                        <li>name and description</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light" id="no-git-scenario">
+        <div class="container">
+            <h2>Scenario 3: No Git Required</h2>
+            <p>Quick evaluation or simple projects without version control. Perfect for learning or prototyping.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Download & Extract</h3>
+                    <p>Download and extract the template to your desired location.</p>
+                    <a href="https://github.com/cchacin/java-maven-template/archive/refs/heads/main.zip" class="btn btn-primary" target="_blank">Download ZIP</a>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Remove Git Files</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+cd java-maven-template-main
+rm -rf .git .github</div>
+                    <p>Remove Git and GitHub Actions files since you won't need them.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Test Everything Works</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+./mvnw test</div>
+                    <p>Maven wrapper will download everything needed and run tests.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Start Coding</h3>
+                    <p>Edit files in src/main/java and add tests in src/test/java.</p>
+                </div>
+            </div>
+
+            <div class="content-card" style="margin-top: 2rem;">
+                <h3>💡 What You Get</h3>
+                <ul>
+                    <li>Full Java 25 development environment</li>
+                    <li>Modern testing libraries and configuration</li>
+                    <li>Code formatting and quality tools</li>
+                    <li>Maven wrapper (no local Maven installation needed)</li>
+                    <li>JShell integration for interactive development</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
+            <h2>Common Commands</h2>
+            <p>Essential commands you'll use regardless of your setup scenario.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🧪 Testing</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Run unit tests only
+./mvnw test
+
+# Run integration tests only
+./mvnw integration-test
+
+# Run all tests (unit + integration)
+./mvnw verify</div>
+                </div>
+                <div class="content-card">
+                    <h3>✨ Code Quality</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Format code automatically
+./mvnw spotless:apply
+
+# Check code formatting
+./mvnw spotless:check
+
+# Compile with format check
+./mvnw compile</div>
+                </div>
+                <div class="content-card">
+                    <h3>🐚 Development</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Start JShell REPL
+./mvnw jshell:run
+
+# Create fat JAR
+./mvnw package -Pshade
+
+# Clean and rebuild
+./mvnw clean compile</div>
+                </div>
+                <div class="content-card">
+                    <h3>📦 Package Management</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Update dependencies
+./mvnw versions:display-dependency-updates
+
+# Install to local repository
+./mvnw install
+
+# Skip tests during build
+./mvnw package -DskipTests</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Java Version Management with jenv</h2>
+            <p>If you have multiple Java versions installed, use jenv to manage them for this project.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🔧 Setup jenv (First Time)</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Install jenv (macOS with Homebrew)
+brew install jenv
+
+# Add to shell profile
+echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(jenv init -)"' >> ~/.zshrc
+
+# Restart shell or source profile
+source ~/.zshrc</div>
+                </div>
+                <div class="content-card">
+                    <h3>☕ Configure Java 25</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+# Add Java 25 to jenv (adjust path as needed)
+jenv add /path/to/java25
+
+# List available versions
+jenv versions
+
+# Set Java 25 for this project
+jenv local 25
+
+# Verify version
+java -version</div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>💡 Pro Tips</h3>
+                <ul>
+                    <li>The template works with any Java 21+ version, but Java 25 is recommended for full feature support</li>
+                    <li>jenv will create a <code>.java-version</code> file in your project directory</li>
+                    <li>This ensures everyone on your team uses the same Java version</li>
+                    <li>CI/CD pipeline is already configured with Oracle JDK 25</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container" style="text-align: center;">
+            <h2>Need Help?</h2>
+            <p>Check out the development guide for advanced workflows and best practices.</p>
+            <div class="cta-buttons">
+                <a href="development.html" class="btn btn-primary">Development Guide</a>
+                <a href="features.html" class="btn btn-secondary">View All Features</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Created by <a href="https://carloschac.in" target="_blank">Carlos Chacin</a> • <a href="https://github.com/cchacin/java-maven-template" target="_blank">View on GitHub</a></p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
