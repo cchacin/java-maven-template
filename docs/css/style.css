@@ -52,48 +52,7 @@
     --transition-theme: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Catppuccin Latte (Light Theme) - Explicit */
-[data-theme="light"] {
-    /* Catppuccin Latte color palette */
-    --ctp-rosewater: #dc8a78;
-    --ctp-flamingo: #dd7878;
-    --ctp-pink: #ea76cb;
-    --ctp-mauve: #8839ef;
-    --ctp-red: #d20f39;
-    --ctp-maroon: #e64553;
-    --ctp-peach: #fe640b;
-    --ctp-yellow: #df8e1d;
-    --ctp-green: #40a02b;
-    --ctp-teal: #179299;
-    --ctp-sky: #04a5e5;
-    --ctp-sapphire: #209fb5;
-    --ctp-blue: #1e66f5;
-    --ctp-lavender: #7287fd;
-    --ctp-text: #4c4f69;
-    --ctp-subtext1: #5c5f77;
-    --ctp-subtext0: #6c6f85;
-    --ctp-overlay2: #7c7f93;
-    --ctp-overlay1: #8c8fa1;
-    --ctp-overlay0: #9ca0b0;
-    --ctp-surface2: #acb0be;
-    --ctp-surface1: #bcc0cc;
-    --ctp-surface0: #ccd0da;
-    --ctp-base: #eff1f5;
-    --ctp-mantle: #e6e9ef;
-    --ctp-crust: #dce0e8;
-
-    /* Semantic mappings for light theme (Latte) */
-    --primary-color: var(--ctp-blue);
-    --secondary-color: var(--ctp-surface2);
-    --accent-color: var(--ctp-peach);
-    --text-dark: var(--ctp-text);
-    --text-light: var(--ctp-subtext1);
-    --bg-light: var(--ctp-base);
-    --bg-white: var(--ctp-mantle);
-    --border-color: var(--ctp-surface0);
-    --shadow: 0 4px 6px -1px rgba(76, 79, 105, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(76, 79, 105, 0.1);
-}
+/* Light theme uses :root as default - no need for explicit [data-theme="light"] */
 
 /* Catppuccin Macchiato (Dark Theme) */
 [data-theme="dark"] {
@@ -503,18 +462,7 @@ pre code {
     background: var(--ctp-overlay0);
 }
 
-/* Syntax highlighting for markdown code blocks */
-.highlight {
-    background: var(--ctp-crust);
-    border-radius: 8px;
-    margin: 1.5rem 0;
-}
-
-.highlight pre {
-    margin: 0;
-    padding: 1.5rem;
-    background: transparent;
-}
+/* Removed .highlight class - redundant with .code-block */
 
 /* Prism.js Custom Theme - Catppuccin Integration */
 /* Override default Prism CSS with Catppuccin colors */
@@ -685,19 +633,26 @@ pre[class*="language-"] {
     color: var(--ctp-green);
 }
 
-/* Basic syntax highlighting fallback for .highlight class */
-.highlight .k { color: var(--ctp-mauve); } /* keywords */
-.highlight .s { color: var(--ctp-green); } /* strings */
-.highlight .c { color: var(--ctp-overlay2); } /* comments */
-.highlight .n { color: var(--ctp-text); } /* names */
-.highlight .p { color: var(--ctp-sky); } /* punctuation */
-.highlight .o { color: var(--ctp-sky); } /* operators */
-.highlight .nb { color: var(--ctp-blue); } /* built-ins */
-.highlight .nf { color: var(--ctp-blue); } /* functions */
+/* Removed .highlight fallback styles - using Prism.js tokens exclusively */
 
 /* Wide layout for pages with lots of code */
 .wide-layout .container {
     max-width: 1600px;  /* Even wider for code-heavy pages */
+}
+
+/* Animation class used by JavaScript IntersectionObserver */
+.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Default state for animatable elements */
+.feature-card,
+.content-card {
+    opacity: 0.8;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .wide-layout .content-grid {
@@ -709,7 +664,6 @@ pre code,
 .code-block {
     word-break: break-all;      /* Allow breaking long lines */
     white-space: pre-wrap;      /* Preserve formatting but allow wrapping */
-    word-wrap: break-word;      /* Legacy support */
 }
 
 /* But preserve exact formatting for specific code types */
@@ -759,6 +713,14 @@ pre code {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));  /* Wider minimum for code */
     gap: 3rem;
+    margin-top: 2rem;
+}
+
+/* Two Column Grid - for better readability of complex content */
+.two-column-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* Force exactly 2 columns */
+    gap: 2rem;
     margin-top: 2rem;
 }
 
@@ -870,13 +832,15 @@ button:focus,
     }
 
     .features-grid {
-        grid-template-columns: 1fr;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Adjust for mobile */
     }
 
     .content-grid {
-        grid-template-columns: 1fr;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Adjust for mobile */
+    }
+
+    .two-column-grid {
+        grid-template-columns: 1fr;  /* Single column on mobile */
     }
 
     .cta-buttons {
@@ -936,7 +900,8 @@ button:focus,
 
     /* Extra small screens - single column everything */
     .features-grid,
-    .content-grid {
+    .content-grid,
+    .two-column-grid {
         grid-template-columns: 1fr;
     }
 
