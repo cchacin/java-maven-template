@@ -11,7 +11,7 @@
 
     <properties>
         <maven.compiler.release>25</maven.compiler.release>
-        <junit.version>5.13.4</junit.version>
+        <junit.version>6.0.0</junit.version>
         <awaitility.version>4.3.0</awaitility.version>
         <assertj.version>3.27.6</assertj.version>
         <jqwik.version>1.9.3</jqwik.version>
@@ -67,15 +67,15 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.0</version>
+                <version>3.14.1</version>
             </plugin>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>3.5.4</version>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>3.5.4</version>
                 <executions>
                     <execution>
                         <id>integration-test</id>
@@ -132,7 +132,7 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-shade-plugin</artifactId>
-                        <version>3.6.0</version>
+                        <version>3.6.1</version>
                         <executions>
                             <execution>
                                 <phase>package</phase>
