@@ -432,26 +432,21 @@ open module org.acme.test {
                     <pre><code class="language-yaml">name: Maven Build
 on:
   push:
-    branches: [main]
-
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout Sources"
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 2
-
-      - name: "Setup JDK"
-        uses: actions/setup-java@v5
+      - uses: actions/setup-java@v5
         with:
           distribution: "oracle"
           java-version: 25
           cache: "maven"
-
-      - name: "Build with Maven"
-        run: ./mvnw verify</code></pre>
+      - run: ./mvnw verify</code></pre>
                 </div>
             </div>
 
@@ -549,6 +544,18 @@ junit.jupiter.execution.parallel.config.strategy = dynamic</code></pre>
         </div>
     </section>
     </main>
+
+    <section class="section section-white">
+        <div class="container" style="text-align: center;">
+            <h2>Support This Project</h2>
+            <p>If you find this template useful, consider supporting its development!</p>
+            <div style="margin-top: 2rem;">
+                <a href="https://www.buymeacoffee.com/cchacin" target="_blank">
+                    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px; width: 217px;">
+                </a>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container">
