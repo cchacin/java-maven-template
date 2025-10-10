@@ -55,6 +55,11 @@
                     <p>Latest Java 25 features with compiler release 25, Oracle JDK 25 in CI/CD, and modern language constructs ready to use.</p>
                 </div>
                 <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Preview Features</h3>
+                    <p>Experiment with cutting-edge Java features before they're finalized. --enable-preview configured for compiler and all test runners.</p>
+                </div>
+                <div class="feature-card">
                     <div class="feature-icon">🎯</div>
                     <h3>Zero Setup Required</h3>
                     <p>Maven wrapper included - no need to install Maven locally. Git configuration, JVM settings, and best practices pre-configured.</p>
@@ -68,6 +73,11 @@
                     <div class="feature-icon">✨</div>
                     <h3>Code Quality</h3>
                     <p>Spotless code formatting with Google Java Format (AOSP style), automated formatting checks, and quality gates in CI/CD.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Build Observability</h3>
+                    <p>OpenTelemetry tracing and Maven build cache for performance insights and dramatically faster incremental builds.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔧</div>
@@ -125,6 +135,9 @@
                     <h3>⚙️ Build & Quality</h3>
                     <ul>
                         <li><strong>Maven Wrapper</strong> - No local Maven required</li>
+                        <li><strong>Preview Features</strong> - --enable-preview enabled</li>
+                        <li><strong>Build Cache Extension</strong> - Faster incremental builds</li>
+                        <li><strong>OpenTelemetry Extension</strong> - Build observability</li>
                         <li><strong>Spotless Plugin</strong> - Google Java Format (AOSP)</li>
                         <li><strong>Surefire/Failsafe</strong> - Separated test execution</li>
                         <li><strong>JShell Plugin</strong> - REPL development</li>
@@ -135,6 +148,7 @@
                 <div class="content-card">
                     <h3>🔧 Configuration</h3>
                     <ul>
+                        <li><strong>.mvn/extensions.xml</strong> - OpenTelemetry + Cache extensions</li>
                         <li><strong>.mvn/jvm.config</strong> - JVM settings (-Xmx2048m)</li>
                         <li><strong>.mvn/maven.config</strong> - Maven optimizations</li>
                         <li><strong>module-info.java</strong> - Modularization ready</li>

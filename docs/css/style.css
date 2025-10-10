@@ -724,6 +724,14 @@ pre code {
     margin-top: 2rem;
 }
 
+/* Two Column Features Grid - for feature cards in 2 columns */
+.features-grid-2col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* Force exactly 2 columns */
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
 .content-card {
     background: var(--bg-white);
     padding: 2rem;
@@ -734,6 +742,40 @@ pre code {
 .content-card h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
+}
+
+/* Info boxes with theme-aware colors */
+.info-box {
+    background: var(--ctp-surface0);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--ctp-blue);
+    margin-top: 2rem;
+}
+
+.info-box h4 {
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+}
+
+.info-box p {
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* Info box variants */
+.info-box-blue {
+    background: var(--ctp-surface0);
+    border-left-color: var(--ctp-blue);
+}
+
+.info-box-green {
+    background: var(--ctp-surface0);
+    border-left-color: var(--ctp-green);
 }
 
 /* Lists */
@@ -761,10 +803,56 @@ li {
 
 .badge-primary {
     background: var(--primary-color);
+    color: white;
 }
 
 .badge-success {
     background: var(--ctp-green);
+    color: white;
+}
+
+.badge-warning {
+    background: var(--ctp-maroon);  /* Using maroon for better contrast */
+    color: white;
+}
+
+.badge-info {
+    background: var(--ctp-blue);
+    color: white;
+}
+
+/* Dark theme adjustments for better contrast */
+[data-theme="dark"] .badge-primary,
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .badge-primary {
+        background: var(--ctp-sapphire);  /* Lighter blue for dark theme */
+        color: var(--ctp-crust);  /* Dark text for better contrast */
+    }
+
+    :root:not([data-theme="light"]) .badge-success {
+        background: var(--ctp-teal);  /* Use teal instead of green */
+        color: var(--ctp-crust);  /* Dark text for better contrast */
+    }
+
+    :root:not([data-theme="light"]) .badge-info {
+        background: var(--ctp-sky);  /* Lighter blue */
+        color: var(--ctp-crust);  /* Dark text for better contrast */
+    }
+}
+
+[data-theme="dark"] .badge-primary {
+    background: var(--ctp-sapphire);
+    color: var(--ctp-crust);
+}
+
+[data-theme="dark"] .badge-success {
+    background: var(--ctp-teal);
+    color: var(--ctp-crust);
+}
+
+[data-theme="dark"] .badge-info {
+    background: var(--ctp-sky);
+    color: var(--ctp-crust);
 }
 
 /* Footer */
@@ -839,7 +927,8 @@ button:focus,
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));  /* Adjust for mobile */
     }
 
-    .two-column-grid {
+    .two-column-grid,
+    .features-grid-2col {
         grid-template-columns: 1fr;  /* Single column on mobile */
     }
 
