@@ -1,0 +1,12 @@
+<extensions>
+    <extension>
+        <groupId>org.apache.maven.extensions</groupId>
+        <artifactId>maven-build-cache-extension</artifactId>
+        <version>1.2.0</version>
+    </extension>
+    <extension>
+        <groupId>io.opentelemetry.contrib</groupId>
+        <artifactId>opentelemetry-maven-extension</artifactId>
+        <version>1.50.0-alpha</version>
+    </extension>
+</extensions>
