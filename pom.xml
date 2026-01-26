@@ -13,7 +13,7 @@
         <maven.compiler.release>25</maven.compiler.release>
         <junit.version>6.0.0</junit.version>
         <awaitility.version>4.3.0</awaitility.version>
-        <assertj.version>3.27.6</assertj.version>
+        <assertj.version>3.27.7</assertj.version>
         <jqwik.version>1.9.3</jqwik.version>
         <record.builder.version>41</record.builder.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
