@@ -18,9 +18,10 @@
             <a href="index.html" class="logo">Java 25 Template</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
                 <li><a href="getting-started.html" class="active">Get Started</a></li>
+                <li><a href="features.html">Features</a></li>
                 <li><a href="development.html">Development</a></li>
+                <li><a href="contributing.html">Contributing</a></li>
                 <li><a href="https://github.com/cchacin/java-maven-template" target="_blank">GitHub</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle" aria-label="Switch theme (currently Auto)" title="Switch between light and dark themes">
@@ -37,32 +38,6 @@
         <div class="container">
             <h1>Getting Started</h1>
             <p>Choose your path to start using the Java 25 Maven template based on your setup and preferences</p>
-        </div>
-    </section>
-
-    <section class="section section-white">
-        <div class="container">
-            <h2>Choose Your Scenario</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🐙</div>
-                    <h3>With GitHub Account</h3>
-                    <p>Recommended approach using GitHub's template feature for easy setup and version control.</p>
-                    <a href="#github-scenario" class="btn btn-primary">Start Here</a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3>Without GitHub Account</h3>
-                    <p>Download and set up the template manually, optionally initialize Git for version control.</p>
-                    <a href="#no-github-scenario" class="btn btn-primary">Start Here</a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h3>No Git Required</h3>
-                    <p>Quick start for evaluation or simple projects without version control setup.</p>
-                    <a href="#no-git-scenario" class="btn btn-primary">Start Here</a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -233,72 +208,6 @@ rm -rf .git .github</code></pre>
         </div>
     </section>
 
-    <section class="section section-white">
-        <div class="container">
-            <h2>Common Commands</h2>
-            <p>Essential commands you'll use regardless of your setup scenario.</p>
-
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3>🧪 Testing</h3>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code class="language-bash"># Run unit tests only
-./mvnw test
-
-# Run integration tests only
-./mvnw integration-test
-
-# Run all tests (unit + integration)
-./mvnw verify</code></pre>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <h3>✨ Code Quality</h3>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code class="language-bash"># Format code automatically
-./mvnw spotless:apply
-
-# Check code formatting
-./mvnw spotless:check
-
-# Compile with format check
-./mvnw compile</code></pre>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <h3>🐚 Development</h3>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code class="language-bash"># Start JShell REPL
-./mvnw jshell:run
-
-# Create fat JAR
-./mvnw package -Pshade
-
-# Clean and rebuild
-./mvnw clean compile</code></pre>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <h3>📦 Package Management</h3>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code class="language-bash"># Update dependencies
-./mvnw versions:display-dependency-updates
-
-# Install to local repository
-./mvnw install
-
-# Skip tests during build
-./mvnw package -DskipTests</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="section section-light">
         <div class="container">
             <h2>Video Tutorial 🇪🇸</h2>
@@ -320,64 +229,12 @@ rm -rf .git .github</code></pre>
     </section>
 
     <section class="section section-white">
-        <div class="container">
-            <h2>Java Version Management with jenv</h2>
-            <p>If you have multiple Java versions installed, use jenv to manage them for this project.</p>
-
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3>🔧 Setup jenv (First Time)</h3>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code class="language-bash"># Install jenv (macOS with Homebrew)
-brew install jenv
-
-# Add to shell profile
-echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(jenv init -)"' >> ~/.zshrc
-
-# Restart shell or source profile
-source ~/.zshrc</code></pre>
-                    </div>
-                </div>
-                <div class="content-card">
-                    <h3>☕ Configure Java 25</h3>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code class="language-bash"># Add Java 25 to jenv (adjust path as needed)
-jenv add /path/to/java25
-
-# List available versions
-jenv versions
-
-# Set Java 25 for this project
-jenv local 25
-
-# Verify version
-java -version</code></pre>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-card">
-                <h3>💡 Pro Tips</h3>
-                <ul>
-                    <li>The template works with any Java 21+ version, but Java 25 is recommended for full feature support</li>
-                    <li>jenv will create a <code>.java-version</code> file in your project directory</li>
-                    <li>This ensures everyone on your team uses the same Java version</li>
-                    <li>CI/CD pipeline is already configured with Oracle JDK 25</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section-white">
         <div class="container" style="text-align: center;">
-            <h2>Need Help?</h2>
-            <p>Check out the development guide for advanced workflows and best practices.</p>
+            <h2>What's Next?</h2>
+            <p>Now that you have the template set up, explore all the features and tools included to supercharge your Java 25 development.</p>
             <div class="cta-buttons">
-                <a href="development.html" class="btn btn-primary">Development Guide</a>
-                <a href="features.html" class="btn btn-secondary">View All Features</a>
+                <a href="features.html" class="btn btn-primary">Explore Features</a>
+                <a href="development.html" class="btn btn-secondary">Development Guide</a>
             </div>
         </div>
     </section>

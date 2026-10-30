@@ -18,9 +18,10 @@
             <a href="index.html" class="logo">Java 25 Template</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="features.html">Features</a></li>
                 <li><a href="getting-started.html">Get Started</a></li>
+                <li><a href="features.html">Features</a></li>
                 <li><a href="development.html" class="active">Development</a></li>
+                <li><a href="contributing.html">Contributing</a></li>
                 <li><a href="https://github.com/cchacin/java-maven-template" target="_blank">GitHub</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle" aria-label="Switch theme (currently Auto)" title="Switch between light and dark themes">
@@ -203,6 +204,78 @@ class ApplicationIT implements WithAssertions {
 
     <section class="section section-white">
         <div class="container">
+            <h2>Common Commands</h2>
+            <p>Essential commands you'll use throughout the development lifecycle.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🧪 Testing Commands</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Run unit tests only
+./mvnw test
+
+# Run integration tests only
+./mvnw integration-test
+
+# Run all tests (unit + integration)
+./mvnw verify
+
+# Run specific test class
+./mvnw test -Dtest=ClassName
+
+# Run specific test method
+./mvnw test -Dtest=ClassName#methodName</code></pre>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>✨ Code Quality Commands</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Format code automatically
+./mvnw spotless:apply
+
+# Check code formatting
+./mvnw spotless:check
+
+# Compile with format check
+./mvnw compile</code></pre>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>🐚 Development Commands</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Start JShell REPL
+./mvnw jshell:run
+
+# Create fat JAR
+./mvnw package -Pshade
+
+# Clean and rebuild
+./mvnw clean compile</code></pre>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>📦 Package Management Commands</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Update dependencies
+./mvnw versions:display-dependency-updates
+
+# Install to local repository
+./mvnw install
+
+# Skip tests during build
+./mvnw package -DskipTests</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
             <h2>Code Quality & Formatting</h2>
             <p>Automated code quality enforcement with Spotless and best practices.</p>
 
@@ -248,6 +321,58 @@ class ApplicationIT implements WithAssertions {
     </section>
 
     <section class="section section-light">
+        <div class="container">
+            <h2>Java Version Management with jenv</h2>
+            <p>If you have multiple Java versions installed, use jenv to manage them for this project.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🔧 Setup jenv (First Time)</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Install jenv (macOS with Homebrew)
+brew install jenv
+
+# Add to shell profile
+echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(jenv init -)"' >> ~/.zshrc
+
+# Restart shell or source profile
+source ~/.zshrc</code></pre>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>☕ Configure Java 25</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Add Java 25 to jenv (adjust path as needed)
+jenv add /path/to/java25
+
+# List available versions
+jenv versions
+
+# Set Java 25 for this project
+jenv local 25
+
+# Verify version
+java -version</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h3>💡 Pro Tips</h3>
+                <ul>
+                    <li>The template works with any Java 21+ version, but Java 25 is recommended for full feature support</li>
+                    <li>jenv will create a <code>.java-version</code> file in your project directory</li>
+                    <li>This ensures everyone on your team uses the same Java version</li>
+                    <li>CI/CD pipeline is already configured with Oracle JDK 25</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-white">
         <div class="container">
             <h2>Interactive Development with JShell</h2>
             <p>Use JShell for rapid prototyping and interactive development.</p>

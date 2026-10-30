@@ -18,9 +18,10 @@
             <a href="index.html" class="logo">Java 25 Template</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="features.html" class="active">Features</a></li>
                 <li><a href="getting-started.html">Get Started</a></li>
+                <li><a href="features.html" class="active">Features</a></li>
                 <li><a href="development.html">Development</a></li>
+                <li><a href="contributing.html">Contributing</a></li>
                 <li><a href="https://github.com/cchacin/java-maven-template" target="_blank">GitHub</a></li>
                 <li>
                     <button class="theme-toggle" id="theme-toggle" aria-label="Switch theme (currently Auto)" title="Switch between light and dark themes">
@@ -37,10 +38,26 @@
         <div class="container">
             <h1>Template Features</h1>
             <p>Everything you need for modern Java 25 development with best practices built-in</p>
+            <div style="margin-top: 2rem;">
+                <p><strong>Jump to:</strong>
+                <a href="#getting-started-features">🎯 Getting Started</a> •
+                <a href="#write-test-code">🧪 Write & Test</a> •
+                <a href="#development-workflow">🔧 Development</a> •
+                <a href="#build-deploy">🚀 Build & Deploy</a>
+                </p>
+            </div>
         </div>
     </section>
 
-    <section class="section section-white">
+    <section class="section section-white" id="getting-started-features">
+        <div class="container">
+            <div class="badge badge-primary">Category 1</div>
+            <h2>🎯 Getting Started Features</h2>
+            <p>Core platform features that make this template Java 25-ready with modern configuration and build tooling.</p>
+        </div>
+    </section>
+
+    <section class="section section-light">
         <div class="container">
             <div class="badge badge-primary">Core Feature</div>
             <h2>Java 25 Ready</h2>
@@ -126,7 +143,15 @@
         </div>
     </section>
 
-    <section class="section section-light">
+    <section class="section section-light" id="write-test-code">
+        <div class="container">
+            <div class="badge badge-success">Category 2</div>
+            <h2>🧪 Write & Test Code</h2>
+            <p>Comprehensive testing and code quality tools to ensure your code is reliable, maintainable, and follows best practices.</p>
+        </div>
+    </section>
+
+    <section class="section section-white">
         <div class="container">
             <h2>Testing Excellence</h2>
             <p>Comprehensive testing setup with separation of concerns and modern testing libraries.</p>
@@ -205,7 +230,7 @@ junit.jupiter.execution.parallel.mode.classes.default = concurrent</code></pre>
         </div>
     </section>
 
-    <section class="section section-light">
+    <section class="section section-white">
         <div class="container">
             <h2>Maven Configuration & Best Practices</h2>
             <p>Optimized Maven configuration with wrapper for consistent builds across environments.</p>
@@ -257,9 +282,164 @@ junit.jupiter.execution.parallel.mode.classes.default = concurrent</code></pre>
         </div>
     </section>
 
+    <section class="section section-white" id="development-workflow">
+        <div class="container">
+            <div class="badge badge-info">Category 3</div>
+            <h2>🔧 Development Workflow</h2>
+            <p>Tools and configurations that enhance your daily development experience and productivity.</p>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Development Tools</h2>
+            <p>Modern development tools and integrations for enhanced productivity.</p>
+
+            <div class="features-grid-2col">
+                <div class="feature-card">
+                    <div class="feature-icon">🐚</div>
+                    <h3>JShell Integration</h3>
+                    <p>REPL development support with JShell Maven plugin for interactive Java development and experimentation.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash">./mvnw jshell:run</code></pre>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Modularization Ready</h3>
+                    <p>Java Platform Module System (JPMS) configured with module-info.java files for both main and test sources.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>jenv Configuration</h3>
+                    <p>Java version management with jenv for easy switching between different Java versions in development.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Fat JAR Support</h3>
+                    <p>Maven Shade plugin available via profile for creating executable JAR files with all dependencies.</p>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash">./mvnw package -Pshade</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section section-white">
         <div class="container">
-            <div class="badge badge-primary">🚀 Performance & Observability</div>
+            <h2>Java Version Management with jenv</h2>
+            <p>Manage multiple Java versions easily for this project with jenv configuration.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🔧 Setup jenv</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Install jenv (macOS with Homebrew)
+brew install jenv
+
+# Add to shell profile
+echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(jenv init -)"' >> ~/.zshrc
+
+# Restart shell
+source ~/.zshrc</code></pre>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>☕ Configure Java 25</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Add Java 25 to jenv
+jenv add /path/to/java25
+
+# Set Java 25 for this project
+jenv local 25
+
+# Verify version
+java -version</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box info-box-blue">
+                <h4>💡 Pro Tip</h4>
+                <p>jenv will create a <code>.java-version</code> file in your project directory, ensuring everyone on your team uses the same Java version. The CI/CD pipeline is already configured with Oracle JDK 25.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-light">
+        <div class="container">
+            <h2>Quick Reference</h2>
+            <p>Most commonly used commands for quick access.</p>
+
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>🧪 Essential Testing</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Run all tests
+./mvnw verify
+
+# Run unit tests only
+./mvnw test</code></pre>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>✨ Code Formatting</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Format code
+./mvnw spotless:apply
+
+# Check formatting
+./mvnw spotless:check</code></pre>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>🔧 Development</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Start JShell REPL
+./mvnw jshell:run
+
+# Create fat JAR
+./mvnw package -Pshade</code></pre>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3>🏗️ Build</h3>
+                    <div class="code-block">
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        <pre><code class="language-bash"># Clean and build
+./mvnw clean compile
+
+# Package without tests
+./mvnw package -DskipTests</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; text-align: center;">
+                <em>For a complete command reference, see the <a href="development.html">Development Guide</a></em>
+            </p>
+        </div>
+    </section>
+
+    <section class="section section-white" id="build-deploy">
+        <div class="container">
+            <div class="badge badge-warning">Category 4</div>
+            <h2>🚀 Build & Deploy</h2>
+            <p>Performance optimization, build observability, and automated CI/CD pipelines for reliable deployments.</p>
+        </div>
+    </section>
+
+    <section class="section section-white">
+        <div class="container">
             <h2>Build Performance & Observability</h2>
             <p>Enhanced build pipeline with distributed tracing and intelligent caching for faster builds and better insights into build performance.</p>
 
@@ -328,44 +508,6 @@ junit.jupiter.execution.parallel.mode.classes.default = concurrent</code></pre>
 
     <section class="section section-light">
         <div class="container">
-            <h2>Development Tools</h2>
-            <p>Modern development tools and integrations for enhanced productivity.</p>
-
-            <div class="features-grid-2col">
-                <div class="feature-card">
-                    <div class="feature-icon">🐚</div>
-                    <h3>JShell Integration</h3>
-                    <p>REPL development support with JShell Maven plugin for interactive Java development and experimentation.</p>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code class="language-bash">./mvnw jshell:run</code></pre>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3>Modularization Ready</h3>
-                    <p>Java Platform Module System (JPMS) configured with module-info.java files for both main and test sources.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>jenv Configuration</h3>
-                    <p>Java version management with jenv for easy switching between different Java versions in development.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📦</div>
-                    <h3>Fat JAR Support</h3>
-                    <p>Maven Shade plugin available via profile for creating executable JAR files with all dependencies.</p>
-                    <div class="code-block">
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                        <pre><code class="language-bash">./mvnw package -Pshade</code></pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section section-light">
-        <div class="container">
             <h2>CI/CD & Automation</h2>
             <p>GitHub Actions workflow ready for continuous integration and deployment.</p>
 
@@ -398,11 +540,11 @@ jobs:
 
     <section class="section section-white">
         <div class="container" style="text-align: center;">
-            <h2>Ready to Use All These Features?</h2>
-            <p>Start your Java 25 project with all these best practices and tools pre-configured.</p>
+            <h2>Ready to Get Started?</h2>
+            <p>Set up your Java 25 project in minutes and start using all these features.</p>
             <div class="cta-buttons">
-                <a href="https://github.com/cchacin/java-maven-template/generate" class="btn btn-primary" target="_blank">Use This Template</a>
-                <a href="getting-started.html" class="btn btn-secondary">Get Started Guide</a>
+                <a href="getting-started.html" class="btn btn-primary">Get Started</a>
+                <a href="development.html" class="btn btn-secondary">Development Guide</a>
             </div>
         </div>
     </section>
